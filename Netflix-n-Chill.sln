@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix-n-Chill", "Netflix-n-Chill\Netflix-n-Chill.csproj", "{0DFD12C7-F55F-45BC-93BA-3729CBA706E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECEB9498-3E8B-4F61-A40F-C28F6B795F92} = {ECEB9498-3E8B-4F61-A40F-C28F6B795F92}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netflix-n-Chill.Models", "Netflix-n-Chill.Models\Netflix-n-Chill.Models.csproj", "{ECEB9498-3E8B-4F61-A40F-C28F6B795F92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DFD12C7-F55F-45BC-93BA-3729CBA706E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DFD12C7-F55F-45BC-93BA-3729CBA706E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DFD12C7-F55F-45BC-93BA-3729CBA706E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DFD12C7-F55F-45BC-93BA-3729CBA706E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEB9498-3E8B-4F61-A40F-C28F6B795F92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEB9498-3E8B-4F61-A40F-C28F6B795F92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEB9498-3E8B-4F61-A40F-C28F6B795F92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEB9498-3E8B-4F61-A40F-C28F6B795F92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1947E02C-ACB0-43DD-83EE-DA839621CAA7}
+	EndGlobalSection
+EndGlobal
