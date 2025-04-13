@@ -23,7 +23,7 @@ namespace Netflix_n_Chill.Models.Services.Implementations
         public List<Person> FindAll()
         {
             List<Person> Persons = new List<Person>();
-            for (int i = 0; i > 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Persons.Add(MockPerson(i));
             }

@@ -8,7 +8,6 @@
             "sslPort": 44393
         }
     },
-    //change launchurl to set up what the project will initialize with (home page)
     "profiles": {
         "http": {
             "commandName": "Project",
