@@ -9,10 +9,16 @@ namespace Netflix_n_Chill.Models.Services.Implementations
 {
     public class PersonServiceImplementation : IPersonService
     {
-        private volatile int Count;
+        //private volatile int Count;
+        private AppDbContext  Count;
+        public int MyProperty { get; set; }
         public Person Create(Person person)
         {
             return person;
+        }
+        public PersonServiceImplementation()
+        {
+            
         }
 
         public void Delete(long id)

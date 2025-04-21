@@ -11,11 +11,15 @@ public class CalculatorController : ControllerBase
     #region Constructor
 
     //DI here
-    private readonly ILogger<CalculatorController> _logger;
+    //private readonly ILogger<CalculatorController>? _logger;
 
-    public CalculatorController(ILogger<CalculatorController> logger)
+    //public CalculatorController(ILogger<CalculatorController> logger)
+    //{
+    //    _logger = logger;
+    //}
+    public CalculatorController()
     {
-        _logger = logger;
+
     }
     #endregion
 

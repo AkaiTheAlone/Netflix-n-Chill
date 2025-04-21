@@ -1,8 +1,8 @@
-﻿using Netflix_n_Chill.Models.Modelos;
+﻿using Netflix_n_Chill.Models;
 
-namespace Netflix_n_Chill.Models.Services
+namespace Netflix_n_Chill.Business
 {
-    public interface IPersonService
+    public interface IPersonBusiness
     {
         Person Create(Person person);
         Person Update(Person person);

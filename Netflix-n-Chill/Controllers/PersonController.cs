@@ -1,30 +1,33 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Netflix_n_Chill.Models.Modelos;
-using Netflix_n_Chill.Models.Services;
+using Netflix_n_Chill.Business;
+using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1")]
+
+    //[Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private IPersonService _personService { get; set; }
-        private readonly ILogger _logger;
-        public PersonController(IPersonService personService, ILogger<PersonController> logger)
+        private IPersonBusiness _person { get; set; }
+        //private readonly ILogger _logger;
+        public PersonController(IPersonBusiness personB, ILogger<PersonController> logger)
         {
-            _personService = personService;
-            _logger = logger;
+            _person = personB;
+            //_logger = logger;
         }
         [HttpGet]
         public IActionResult GetPersons()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_person.FindAll());
         }
         [HttpGet("{ID}")]
         public IActionResult GetPerson(int id)
         {
-            var person = _personService.FindByID(id);
+            var person = _person.FindByID(id);
             if (person == null) return NotFound("Person ID Not found!");
             return Ok(person);
         }
@@ -34,8 +37,7 @@ namespace Netflix_n_Chill.Controllers
         {
             if (person == null) return BadRequest("Empty Body!");
 
-            return Ok(_personService.Create(person));
-
+            return Ok(_person.Create(person));
         }
 
         [HttpPut]
@@ -43,16 +45,16 @@ namespace Netflix_n_Chill.Controllers
         {
             if (person == null) return BadRequest("Empty Body!");
 
-            return Ok(_personService.Update(person));
+            return Ok(_person.Update(person));
 
         }
 
         [HttpDelete("{ID}")]
         public IActionResult Delete(long ID)
         {
-            if (_personService.FindByID(ID) == null) return NotFound();
+            if (_person.FindByID(ID) == null) return NotFound();
 
-            _personService.Delete(ID);
+            _person.Delete(ID);
             //var person = _personService.FindByID(ID);
             //if (person == null) return NotFound();
 
