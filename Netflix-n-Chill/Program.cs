@@ -6,20 +6,20 @@ using Netflix_n_Chill.Business.Implementations;
 using Netflix_n_Chill.Repository;
 using Netflix_n_Chill.Repository.Implementations;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-//bank access
-builder.
-Services.
-AddDbContext<AppDbContext>(options =>
-                               options.UseMySql(builder.
-                                                Configuration["SqlConnection:ConnectionString"],
-                                                new MySqlServerVersion(new Version(8, 0, 3))));
+//entity
+//var SqlConn = builder.Configuration["SqlConnection:ConnectionString"];
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+                throw new InvalidOperationException("String de conexão 'DefaultConnection' não foi encontrada.");
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+
 
 //API versioning
 builder.Services.AddApiVersioning(options =>
@@ -35,9 +35,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 //aspnet's dependency injections
 builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
+builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
+
+
+//ensure database update
+using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate(); // apply pending migrations
+}
 
 var app = builder.Build();
 

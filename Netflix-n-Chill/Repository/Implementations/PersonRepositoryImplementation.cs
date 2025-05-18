@@ -13,7 +13,6 @@ namespace Netflix_n_Chill.Repository.Implementations
 {
     public class PersonRepositoryImplementation : IPersonRepository
     {
-        //old prop for mocking data
         //private volatile int Count;
         private AppDbContext context;
         public PersonRepositoryImplementation(AppDbContext _context)
@@ -52,36 +51,16 @@ namespace Netflix_n_Chill.Repository.Implementations
         {
             //return context.Persons.ToList();
             return [.. context.Person]; //both ways work
-
-            #region old mocking data
-            //old mocking data
-            //List<Person> Persons = new List<Person>();
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    Persons.Add(MockPerson(i));
-            //}
-            //return Persons;
-            #endregion
         }
         public Person FindByID(long id)
         {
             return context.Person.SingleOrDefault(p => p.Id.Equals(id));
-            #region old mocking data
-            //return new Person
-            //{
-            //    Id = 1,
-            //    FirstName = "Barba",
-            //    LastName = "MONSTER",
-            //    Adress = "panazzolo",
-            //    Gender = "certified woman avoider."
-            //};
-            #endregion
         }
 
         public Person Update(Person person)
         {
             //if person does not exists
-            if (!Exists(person.Id)) return new Person();
+            if (!Exists(person.Id)) return null;
 
             var result = context.Person.SingleOrDefault(p => p.Id.Equals(person.Id));
             if (result != null)
@@ -101,25 +80,6 @@ namespace Netflix_n_Chill.Repository.Implementations
         {
             return context.Person.Any(p => p.Id.Equals(id));
         }
-
-        #region old mocking data
-
-        //private Person MockPerson(long i)
-        //{
-        //    return new Person
-        //    {
-        //        Id = 1,
-        //        FirstName = $"Name {i}",
-        //        LastName = $"Surname {i}",
-        //        Gender = $"there are only {i}.",
-        //        Adress = $"Adress Number {i}"
-        //    };
-        //}
-        //private long IncrementAndGet()
-        //{
-        //    return Interlocked.Increment(ref Count);
-        //}
-        #endregion
 
     }
 }

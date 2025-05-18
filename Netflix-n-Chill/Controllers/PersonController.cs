@@ -5,13 +5,14 @@ using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
 {
-    [ApiVersion("1")]
 
+    [ApiVersion("1")]
     //[Route("api/[controller]")]
     [Route("api/[controller]/v{version:apiVersion}")]
     [ApiController]
     public class PersonController : ControllerBase
     {
+
         private IPersonBusiness _person { get; set; }
         //private readonly ILogger _logger;
         public PersonController(IPersonBusiness personB, ILogger<PersonController> logger)
@@ -20,12 +21,12 @@ namespace Netflix_n_Chill.Controllers
             //_logger = logger;
         }
         [HttpGet]
-        public IActionResult GetPersons()
+        public IActionResult GetAll()
         {
             return Ok(_person.FindAll());
         }
         [HttpGet("{ID}")]
-        public IActionResult GetPerson(int id)
+        public IActionResult Get(int id)
         {
             var person = _person.FindByID(id);
             if (person == null) return NotFound("Person ID Not found!");
