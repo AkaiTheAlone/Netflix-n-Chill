@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Netflix_n_Chill.Models;
+using System.Reflection.Emit;
 
 namespace Netflix_n_Chill
 {
@@ -21,6 +22,11 @@ namespace Netflix_n_Chill
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //determine decimal`s precision for an decimal
+            //builder.Entity<Books>()
+            //    .Property(b => b.Price)
+            //    .HasPrecision(18, 4);
+
             base.OnModelCreating(builder);
             for (var i = 1; i < 500; i++)
             {

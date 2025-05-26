@@ -1,13 +1,14 @@
 ﻿using Netflix_n_Chill.Models;
 using Netflix_n_Chill.Repository;
+using Netflix_n_Chill.Repository.Generic;
 
 namespace Netflix_n_Chill.Business.Implementations
 {
     public class BookBusinessImplementation : IBookBusiness
     {
-        private readonly IBookRepository rep;
+        private readonly IRepository<Books> rep;
 
-        public BookBusinessImplementation(IBookRepository _rep)
+        public BookBusinessImplementation(IRepository<Books> _rep)
         {
             rep = _rep;
         }
