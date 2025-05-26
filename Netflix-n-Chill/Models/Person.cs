@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Netflix_n_Chill.Models.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime;
 
 namespace Netflix_n_Chill.Models
 {
-    public class Person
+    public class Person : BaseEntity
     {
         public long Id { get; set; }
         public string? FirstName { get; set; }

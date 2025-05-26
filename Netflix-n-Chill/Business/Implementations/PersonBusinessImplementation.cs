@@ -9,16 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 using Netflix_n_Chill.Business;
 using Netflix_n_Chill.Models;
 using Netflix_n_Chill.Repository;
-using Netflix_n_Chill.Repository.Implementations;
+using Netflix_n_Chill.Repository.Generic;
 
 namespace Netflix_n_Chill.Business.Implementations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        //old prop for mocking data
-        //private volatile int Count;
-        private readonly IPersonRepository repository;
-        public PersonBusinessImplementation(IPersonRepository _rep)
+        private readonly IRepository<Person> repository;
+        public PersonBusinessImplementation(IRepository<Person> _rep)
         {
             repository = _rep;
         }

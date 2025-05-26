@@ -4,7 +4,6 @@ using Asp.Versioning;
 using Netflix_n_Chill.Business;
 using Netflix_n_Chill.Business.Implementations;
 using Netflix_n_Chill.Repository;
-using Netflix_n_Chill.Repository.Implementations;
 using Netflix_n_Chill.Repository.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,7 +37,6 @@ builder.Services.AddSwaggerGen();
 
 
 //aspnet's dependency injections
-builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
 //builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
