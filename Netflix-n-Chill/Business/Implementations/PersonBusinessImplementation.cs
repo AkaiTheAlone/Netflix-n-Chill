@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.AspNetCore.Mvc;
-using Netflix_n_Chill.Business;
+﻿using Netflix_n_Chill.Data.Converter.Implementations;
+using Netflix_n_Chill.Data.ValueObject;
 using Netflix_n_Chill.Models;
-using Netflix_n_Chill.Repository;
 using Netflix_n_Chill.Repository.Generic;
 
 namespace Netflix_n_Chill.Business.Implementations
@@ -16,9 +8,11 @@ namespace Netflix_n_Chill.Business.Implementations
     public class PersonBusinessImplementation : IPersonBusiness
     {
         private readonly IRepository<Person> repository;
+        private readonly PersonConverter converter;
         public PersonBusinessImplementation(IRepository<Person> _rep)
         {
             repository = _rep;
+            converter = new PersonConverter();
         }
 
         public void Delete(long id)
@@ -26,23 +20,23 @@ namespace Netflix_n_Chill.Business.Implementations
             repository.Delete(id);
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-            return repository.Create(person);
+            return converter.Parse(repository.Create(converter.Parse(person)));
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return repository.FindAll();
+            return converter.Parse(repository.FindAll());
         }
-        public Person FindByID(long id)
+        public PersonVO FindByID(long id)
         {
-            return repository.FindByID(id);
+            return converter.Parse(repository.FindByID(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-            return repository.Update(person);
+            return converter.Parse(repository.Update(converter.Parse(person)));
         }
 
     }

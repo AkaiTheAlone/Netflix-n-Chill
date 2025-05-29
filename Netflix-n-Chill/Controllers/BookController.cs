@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Netflix_n_Chill.Business;
-using Netflix_n_Chill.Business.Implementations;
+using Netflix_n_Chill.Data.ValueObject;
 using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
@@ -26,20 +26,20 @@ namespace Netflix_n_Chill.Controllers
             return Ok(_business.FindAll());
         }
         [HttpPost]
-        public IActionResult PostCreate([FromBody] Books book)
+        public IActionResult PostCreate([FromBody] BookVO book)
         {
             if (book == null) return BadRequest("Invalid book!");
 
             return Ok(_business.Create(book));
         }
         [HttpPut]
-        public IActionResult PutUpdate([FromBody] Books book)
+        public IActionResult PutUpdate([FromBody] BookVO book)
         {
             if (book == null) return BadRequest("Invalid book!");
             return Ok(_business.Update(book));
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id) 
         {
             _business.Delete(id);
             return NoContent();

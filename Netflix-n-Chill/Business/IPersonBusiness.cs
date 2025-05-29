@@ -1,13 +1,14 @@
-﻿using Netflix_n_Chill.Models;
+﻿using Netflix_n_Chill.Data.ValueObject;
+using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Business
 {
     public interface IPersonBusiness
     {
-        Person Create(Person person);
-        Person Update(Person person);
+        PersonVO Create(PersonVO person);
+        PersonVO Update(PersonVO person);
         void Delete(long id);
-        Person FindByID(long id);
-        List<Person> FindAll();
+        PersonVO FindByID(long id);
+        List<PersonVO> FindAll();
     }
 }

@@ -1,4 +1,6 @@
-﻿using Netflix_n_Chill.Models;
+﻿using Netflix_n_Chill.Data.Converter.Implementations;
+using Netflix_n_Chill.Data.ValueObject;
+using Netflix_n_Chill.Models;
 using Netflix_n_Chill.Repository;
 using Netflix_n_Chill.Repository.Generic;
 
@@ -7,14 +9,16 @@ namespace Netflix_n_Chill.Business.Implementations
     public class BookBusinessImplementation : IBookBusiness
     {
         private readonly IRepository<Books> rep;
+        private readonly BookConverter converter;
 
         public BookBusinessImplementation(IRepository<Books> _rep)
         {
             rep = _rep;
+            converter = new BookConverter();
         }
-        public Books Create(Books book)
+        public BookVO Create(BookVO book)
         {
-            return rep.Create(book);
+            return converter.Parse(rep.Create(converter.Parse(book)));
         }
 
         public void Delete(long id)
@@ -22,19 +26,19 @@ namespace Netflix_n_Chill.Business.Implementations
             rep.Delete(id);
         }
 
-        public List<Books> FindAll()
+        public List<BookVO> FindAll()
         {
-            return rep.FindAll();
+            return converter.Parse(rep.FindAll());
         }
 
-        public Books FindByID(long id)
+        public BookVO FindByID(long id)
         {
-            return rep.FindByID(id);
+            return converter.Parse(rep.FindByID(id));
         }
 
-        public Books Update(Books Book)
+        public BookVO Update(BookVO Book)
         {
-            return rep.Update(Book);
+            return converter.Parse(rep.Update(converter.Parse(Book)));
         }
     }
 }

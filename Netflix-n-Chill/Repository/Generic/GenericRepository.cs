@@ -64,12 +64,13 @@ namespace Netflix_n_Chill.Repository.Generic
                 try
                 {
                     if (Item == null) throw new ApplicationException("Invalid Request!");
-                    context.SaveChanges();
+                    context.Entry(result).CurrentValues.SetValues(Item);
                 }
                 catch (Exception) { throw; }
 
 
-                dataSet.Update(Item);
+                dataSet.Update(result);
+                context.SaveChanges();
             }
             else
             {

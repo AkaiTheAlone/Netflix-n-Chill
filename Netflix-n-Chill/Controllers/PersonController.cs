@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Netflix_n_Chill.Business;
+using Netflix_n_Chill.Data.ValueObject;
 using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
@@ -34,7 +35,7 @@ namespace Netflix_n_Chill.Controllers
         }
         //from body is a directive used to get all the json body sent to the adress
         [HttpPost]
-        public IActionResult PostCreate([FromBody] Person person)
+        public IActionResult PostCreate([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest("Empty Body!");
 
@@ -42,12 +43,11 @@ namespace Netflix_n_Chill.Controllers
         }
 
         [HttpPut]
-        public IActionResult PutUpdate([FromBody] Person person)
+        public IActionResult PutUpdate([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest("Empty Body!");
 
             return Ok(_person.Update(person));
-
         }
 
         [HttpDelete("{ID}")]

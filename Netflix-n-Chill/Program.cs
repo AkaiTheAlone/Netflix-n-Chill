@@ -1,8 +1,9 @@
+using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Netflix_n_Chill;
-using Asp.Versioning;
 using Netflix_n_Chill.Business;
 using Netflix_n_Chill.Business.Implementations;
+using Netflix_n_Chill.Data.Converter.Implementations;
 using Netflix_n_Chill.Repository;
 using Netflix_n_Chill.Repository.Generic;
 
@@ -37,9 +38,12 @@ builder.Services.AddSwaggerGen();
 
 
 //aspnet's dependency injections
+
 builder.Services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
-//builder.Services.AddScoped<IBookRepository, BookRepositoryImplementation>();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>();
+builder.Services.AddScoped<BookConverter>();
+builder.Services.AddScoped<PersonConverter, PersonConverter>();
+//repositories
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
 

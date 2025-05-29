@@ -1,9 +1,8 @@
-﻿using Netflix_n_Chill.Models.Base;
-
-namespace Netflix_n_Chill.Models
+﻿namespace Netflix_n_Chill.Data.ValueObject
 {
-    public class Books : BaseEntity
+    public class BookVO
     {
+        public long Id { get; set; }
         public string? Title { get; set; }
         public string? Author { get; set; }
         public decimal Price { get; set; }
