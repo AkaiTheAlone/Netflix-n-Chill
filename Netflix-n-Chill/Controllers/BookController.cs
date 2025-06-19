@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Netflix_n_Chill.Business;
 using Netflix_n_Chill.Data.ValueObject;
-using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
 {
@@ -16,16 +14,28 @@ namespace Netflix_n_Chill.Controllers
             _business = business;
         }
         [HttpGet("{id}")]
+        [ProducesResponseType((200), Type = typeof(BookVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult GetByID(int id)
         {
             return Ok(_business.FindByID(id));
         }
         [HttpGet]
+        [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult GetAll()
         {
             return Ok(_business.FindAll());
         }
         [HttpPost]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult PostCreate([FromBody] BookVO book)
         {
             if (book == null) return BadRequest("Invalid book!");
@@ -33,13 +43,20 @@ namespace Netflix_n_Chill.Controllers
             return Ok(_business.Create(book));
         }
         [HttpPut]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult PutUpdate([FromBody] BookVO book)
         {
             if (book == null) return BadRequest("Invalid book!");
             return Ok(_business.Update(book));
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) 
+        [ProducesResponseType(204)] //-> No content
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult Delete(int id)
         {
             _business.Delete(id);
             return NoContent();

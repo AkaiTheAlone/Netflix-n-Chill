@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Netflix_n_Chill.Business;
 using Netflix_n_Chill.Data.ValueObject;
-using Netflix_n_Chill.Models;
 
 namespace Netflix_n_Chill.Controllers
 {
@@ -22,11 +21,19 @@ namespace Netflix_n_Chill.Controllers
             //_logger = logger;
         }
         [HttpGet]
+        [ProducesResponseType((200), Type = typeof(List<PersonVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult GetAll()
         {
             return Ok(_person.FindAll());
         }
         [HttpGet("{ID}")]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Get(int id)
         {
             var person = _person.FindByID(id);
@@ -35,6 +42,10 @@ namespace Netflix_n_Chill.Controllers
         }
         //from body is a directive used to get all the json body sent to the adress
         [HttpPost]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult PostCreate([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest("Empty Body!");
@@ -43,6 +54,10 @@ namespace Netflix_n_Chill.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType((200), Type = typeof(PersonVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult PutUpdate([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest("Empty Body!");
@@ -51,19 +66,17 @@ namespace Netflix_n_Chill.Controllers
         }
 
         [HttpDelete("{ID}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Delete(long ID)
         {
             if (_person.FindByID(ID) == null) return NotFound();
 
             _person.Delete(ID);
-            //var person = _personService.FindByID(ID);
-            //if (person == null) return NotFound();
 
-            //_personService.Delete(person.Id);
             return NoContent();
         }
-
-
     }
 }
 

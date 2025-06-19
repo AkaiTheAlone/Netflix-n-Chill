@@ -1,12 +1,11 @@
-﻿using Netflix_n_Chill.Models.Base;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime;
+﻿using Netflix_n_Chill.Hypermedia;
+using Netflix_n_Chill.Hypermedia.Abstract;
 using System.Text.Json.Serialization;
 
 namespace Netflix_n_Chill.Data.ValueObject
 {
     //data member does not work anymore on aspnetcore
-    public class PersonVO
+    public class PersonVO : ISupportHypermedia
     {
         [JsonPropertyName("IdentifierCode")]
         public long Id { get; set; }
@@ -18,5 +17,6 @@ namespace Netflix_n_Chill.Data.ValueObject
         public string? Address { get; set; }
         [JsonPropertyName("Sex")]
         public string? Gender { get; set; }
+        public List<HypermediaLink> Links { get; set; } = new();
     }
 }
