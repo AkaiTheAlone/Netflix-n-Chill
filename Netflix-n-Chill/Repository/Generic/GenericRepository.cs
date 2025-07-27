@@ -1,6 +1,4 @@
-﻿using System.Data;
-using System.Security.Cryptography.Xml;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Netflix_n_Chill.Models.Base;
 
 namespace Netflix_n_Chill.Repository.Generic

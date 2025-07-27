@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using Netflix_n_Chill.Business;
+using Netflix_n_Chill.Business.Abstractions;
 using Netflix_n_Chill.Data.ValueObject;
 
 namespace Netflix_n_Chill.Controllers

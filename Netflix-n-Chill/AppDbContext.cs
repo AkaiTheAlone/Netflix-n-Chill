@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
 using Netflix_n_Chill.Models;
-using System.Reflection.Emit;
 
 namespace Netflix_n_Chill
 {
@@ -19,10 +16,11 @@ namespace Netflix_n_Chill
         }
         public DbSet<Person> Person { get; set; }
         public DbSet<Books> Books { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //determine decimal`s precision for an decimal
+            //determine decimal's precision for an decimal
             //builder.Entity<Books>()
             //    .Property(b => b.Price)
             //    .HasPrecision(18, 4);
